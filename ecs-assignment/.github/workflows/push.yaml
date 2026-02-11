@@ -1,0 +1,36 @@
+name: puching to ECR
+
+on: [push]
+env:
+   AWS_region: "eu-west-2"
+
+permissions:
+  id-token: write   
+  contents: read 
+
+jobs:
+    build:
+        runs-on: ubunto-latest
+
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v2
+            - name: Aws credentials
+              uses: aws-actions/configure-aws-credentials@v6
+              with:
+               role-to-assume: ${{ secrets.IAM }}
+               aws-region: ${{env.AWS_region}}          
+            
+            - name: Loging in ECr
+              id: login-ecr
+              uses: aws-actions/amazon-ecr-login@v2
+
+            - name: build and push image
+              env:
+                registry: ${{ steps.login-ecr.outputs.registry }}
+                repository: project
+                image-tag: ${{ github.sha }}
+              
+              run: |
+                docker build -t $registry/$repository:$image-tag /ecs-assignment
+                docker push $registory/$repository:$image-tag
