@@ -18,7 +18,7 @@ jobs:
       - name: Aws credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
-         role-to-assume: ${{ secrets.IAM }}
+         role-to-assume: ${{ secrets.ROLE }}
          aws-region: ${{env.AWS_region}}          
            
       - name: Loging in ECr
