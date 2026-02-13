@@ -24,9 +24,7 @@ jobs:
       - name: Loging in ECr
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
-        with:
-          registry-type: public
-          mask-password: 'false'
+
 
       - name: build and push image
         env:
