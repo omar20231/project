@@ -84,7 +84,7 @@ infra/.terraform.lock.hcl
 ecs-assignment/config
 ecs-assignment/images
 ecs-assignment/node_modules
-ecs-assignment/public
+
 ecs-assignment/src
 ecs-assignment/.dockerignore
 ecs-assignment/.eslintignore
