@@ -88,7 +88,7 @@ ecs-assignment/public
 ecs-assignment/src
 ecs-assignment/.dockerignore
 ecs-assignment/.eslintignore
-ecs-assignment/*.json
+
 
 ecs-assignment/.gitattributes
 ecs-assignment/.npmignore
