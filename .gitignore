@@ -85,7 +85,7 @@ ecs-assignment/config
 ecs-assignment/images
 ecs-assignment/node_modules
 
-ecs-assignment/src
+
 ecs-assignment/.dockerignore
 ecs-assignment/.eslintignore
 
