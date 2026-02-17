@@ -7,7 +7,7 @@ COPY package*.json yarn.lock ./
 RUN yarn install 
 
 COPY . .
-RUN yarn run build 
+
 RUN yarn build
 
 FROM node:23-alpine
