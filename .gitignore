@@ -81,8 +81,7 @@ terraform.*
 ./ecs-assignment/infra/** */.tfstate
 *.tfstate
 infra/.terraform.lock.hcl
-ecs-assignment/config
-ecs-assignment/images
+
 ecs-assignment/node_modules
 
 
