@@ -25,7 +25,10 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-
+      - name: update for yarn build 
+        run: |
+          npx update-browserslist-db@latest 
+           
       - name: build and push image
         env:
          registry: ${{ steps.login-ecr.outputs.registry }}
