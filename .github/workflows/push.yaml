@@ -34,9 +34,8 @@ jobs:
         env:
          registry: ${{ steps.login-ecr.outputs.registry }}
          repository: project
-         image-tag: ${{ github.sha }}
+         image_tag: ${{ github.sha }}
 
         run: |
-          docker build -t $registry/$repository:$image-tag ./ecs-assignment
-          docker tag git:$image-tag $registry/$repository:$image-tag
-          docker push $registory/$repository:$image-tag
+          docker build -t $registry/$repository:$image_tag ./ecs-assignment
+          docker push $registory/$repository:$image_tag
