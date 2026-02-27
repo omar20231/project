@@ -38,6 +38,6 @@ jobs:
          image_tag: ${{ github.sha }}         
         
         run: |
-          docker build -t $registory/$repository:$image_tag ./ecs-assignment
-          docker push $registory/$repository:$image_tag
+          docker build -t $registry/$repository:$image_tag ./ecs-assignment
+          docker push $registry/$repository:$image_tag
           
