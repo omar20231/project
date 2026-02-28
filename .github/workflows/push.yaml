@@ -1,6 +1,7 @@
 name: puching to ECR
 
-on: [push]
+on:
+  workflow_dispatch:
 env:
    AWS_region: "eu-west-2"
 
