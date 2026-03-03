@@ -51,7 +51,7 @@ resource "aws_ecs_task_definition" "service" {
   container_definitions = jsonencode([
     {
       name      = local.name
-      image     = "${data.aws_ecr_repository.thread.repository_url}:latest"
+      image     = "${data.aws_ecr_repository.thread.repository_url}:e95d9ddf3e0ff5abc1bf47d65b6100f48a5fd08e"
       cpu       = local.container_cpu
       memory    = local.memory
       essential = true
