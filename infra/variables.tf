@@ -28,7 +28,7 @@ variable "vpc_cidr" {
 }
 variable "domain" {
   type = string
-  
+  default ="tm-thread.com"
 }
 
 
