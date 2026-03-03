@@ -1,5 +1,6 @@
 name: terraform 
-on : [push]
+on : push
+
 
 
 
