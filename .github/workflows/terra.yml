@@ -17,7 +17,7 @@ jobs:
      - name: Aws credentials
        uses: aws-actions/configure-aws-credentials@v6
        with:
-         role-to-assume: ${{ secrets.ROLE }}
+         role-to-assume: ${{ secrets.TERRAFORM }}
          aws-region: "eu-west-2"
       
      -  name: terraform 
