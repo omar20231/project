@@ -30,7 +30,7 @@ jobs:
        run : |
         cd infra
         terraform init
-     - name: tarraform planned
+     - name: tarraform plan
        run: | 
         cd infra
         terraform plan 
