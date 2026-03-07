@@ -1,7 +1,17 @@
 name: terraform 
 on :
   workflow_dispatch:
+    inputs:
+      actions:
+        description: select action
+        type: choice
+        required: true
+        options:
+         - init
+         - plan
+         - apply --auto-approve
 
+  
 
 
 permissions:
@@ -10,9 +20,6 @@ permissions:
 jobs:
     build:
      runs-on: ubuntu-latest
-     strategy:
-       matrix:
-        terraform: [init,plan,apply --auto-approve]
 
      steps:
      - name: checkout code 
@@ -34,7 +41,7 @@ jobs:
      - name: terraform 
        run : |
         cd infra
-        terraform ${{ matrix.terraform}}
+        terraform ${{ inputs.actions.options}}
     # - name: tarraform plan
      #  run: | 
       #  cd 
