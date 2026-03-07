@@ -37,7 +37,8 @@ jobs:
         with:
          terraform_version: "1.14.6"
      
-
+     - name: test
+       run: echo "terraform ${{ inputs.actions.options}}"
      - name: terraform 
        run : |
         cd infra
