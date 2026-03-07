@@ -38,11 +38,11 @@ jobs:
          terraform_version: "1.14.6"
      
      - name: test
-       run: echo "terraform ${{ inputs.actions.options}}"
+       run: echo "terraform ${{ inputs.actions}}"
      - name: terraform 
        run : |
         cd infra
-        terraform ${{ inputs.actions.options}}
+        terraform ${{ inputs.actions}}
     # - name: tarraform plan
      #  run: | 
       #  cd 
