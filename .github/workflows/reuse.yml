@@ -1,5 +1,6 @@
 name: terraform 
-on : push
+on :
+  workflow_dispatch:
 
 
 
@@ -9,10 +10,14 @@ permissions:
 jobs:
     build:
      runs-on: ubuntu-latest
+     strategy:
+       matrix:
+        terraform: [init,plan,apply --auto-approve]
 
      steps:
      - name: checkout code 
        uses: actions/checkout@v2
+
 
      - name: Aws credentials
        uses: aws-actions/configure-aws-credentials@v6
@@ -26,11 +31,14 @@ jobs:
          terraform_version: "1.14.6"
      
 
-     - name: terraform init 
+     - name: terraform 
        run : |
         cd infra
-        terraform init
-     - name: tarraform plan
-       run: | 
-        cd infra
-        terraform plan 
+        terraform ${{ matrix.terraform}}
+    # - name: tarraform plan
+     #  run: | 
+      #  cd 
+       # terraform plan -out=tfplan
+
+     
+           
