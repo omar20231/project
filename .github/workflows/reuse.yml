@@ -1,15 +1,9 @@
 name: terraform 
-on :
-  workflow_dispatch:
-    inputs:
-      actions:
-        description: select action
-        type: choice
-        required: true
-        options:
-         - init
-         - plan
-         - apply --auto-approve
+on : 
+  pull_request:
+    branches: [main]
+    paths:
+      -"infra/**"
 
   
 
@@ -36,17 +30,25 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
          terraform_version: "1.14.6"
+         terraform_wrapper: false
+
+     - name: terraform init
+       run: terrafom init
+      
+     - name: terraform validate
+       run: terraform validate -no-color
+
+     - name: terraform plan
+       id: plan
+       run: terraform plan -no-color -out=tfplan
+
      
-     - name: test
-       run: echo "terraform ${{ inputs.actions}}"
-     - name: terraform 
-       run : |
-        cd infra
-        terraform ${{ inputs.actions}}
-    # - name: tarraform plan
-     #  run: | 
-      #  cd 
-       # terraform plan -out=tfplan
+     - name: upload plan artifect
+       uses: actions/upload-artifact@v4
+        with:
+        name: terraform-plan 
+        path: infra/tfplan
+        retention-days: 5
 
      
            
