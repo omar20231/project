@@ -1,4 +1,4 @@
 variable "name" {
     type = string
-    default= "test_policy"
+    default= "ci"
 }
