@@ -1,0 +1,41 @@
+name: terraform apply and checks 
+
+on: 
+    push:
+     branches: [ main ]
+     paths:
+      -"infra/**"
+
+permissions:
+  id-token: write   
+  contents: read 
+jobs:
+    build:
+     runs-on: ubuntu-24.04
+
+     steps:
+     - name: checkout code 
+       uses: actions/checkout@v2
+
+
+     - name: Aws credentials
+       uses: aws-actions/configure-aws-credentials@v6
+       with:
+         role-to-assume: ${{ secrets.TERRAFORM }}
+         aws-region: "eu-west-2"
+      
+     -  name: terraform 
+        uses: hashicorp/setup-terraform@v3
+        with:
+         terraform_version: "1.14.6"
+         terraform_wrapper: false
+
+     - name: terraform init  
+       run: |
+          cd infra
+          terraform init
+
+     - name: terraform apply 
+       run : |
+          cd infra
+          terraform apply -no-color-auto-approve
