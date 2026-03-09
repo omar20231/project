@@ -36,19 +36,19 @@ jobs:
 
      - name: terraform init  ##cd into the dir
        run: |
-        cd infra
-        terrafom init
+          cd infra
+          terrafom init
       
      - name: terraform validate
        run: |
-        cd infra
-        terraform validate -no-color
+          cd infra
+          terraform validate -no-color
 
      - name: terraform plan
        id: plan
        run: | 
-        cd infra
-        terraform plan -no-color -out=tfplan
+          cd infra
+          terraform plan -no-color -out=tfplan
 
      
      - name: upload plan artifect
