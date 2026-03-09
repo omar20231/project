@@ -2,9 +2,8 @@ name: terraform apply and checks
 
 on: 
     push:
-     branches: [ main ]
-     paths:
-      -"infra/**"
+     branches: [main]
+    workflow_dispatch:
 
 permissions:
   id-token: write   
