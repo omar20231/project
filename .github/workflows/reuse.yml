@@ -34,10 +34,10 @@ jobs:
          terraform_version: "1.14.6"
          terraform_wrapper: false
 
-     - name: terraform init  ##cd into the dir
+     - name: terraform init  
        run: |
           cd infra
-          terrafom init
+          terraform init
       
      - name: terraform validate
        run: |
