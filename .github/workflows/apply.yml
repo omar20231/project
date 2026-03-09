@@ -31,7 +31,7 @@ jobs:
          terraform_version: "1.14.6"
          terraform_wrapper: false
 
-     - name: terraform init  
+     - name: terraform-init  
        run: |
           cd infra
           terraform init
