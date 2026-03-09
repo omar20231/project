@@ -1,14 +1,10 @@
-name: terraform 
-on : 
-  pull_request:
-    branches: [ main ]
-    paths:
+name: terraform apply and checks 
+
+on: 
+    push:
+     branches: [ main ]
+     paths:
       -"infra/**"
-  workflow_dispatch:
-
-
-  
-
 
 permissions:
   id-token: write   
@@ -38,25 +34,8 @@ jobs:
        run: |
           cd infra
           terraform init
-      
-     - name: terraform validate
-       run: |
+
+     - name: terraform apply 
+       run : |
           cd infra
-          terraform validate -no-color
-
-     - name: terraform plan
-       id: plan
-       run: | 
-          cd infra
-          terraform plan -no-color -out=tfplan
-
-     
-     - name: upload plan artifect
-       uses: actions/upload-artifact@v4
-       with:
-         name: terraform-plan 
-         path: infra/tfplan
-         retention-days: 5
-
-     
-           
+          terraform apply -no-color-auto-approve
