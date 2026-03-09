@@ -37,4 +37,4 @@ jobs:
      - name: terraform apply 
        run : |
           cd infra
-          terraform apply -no-color-auto-approve
+          terraform apply -no-color -auto-approve
