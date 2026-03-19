@@ -206,6 +206,7 @@ module "ALB" {
   subnet-1 = aws_subnet.public-1.id
   subnet-2 = aws_subnet.public-2.id
   vpc_id = aws_vpc.main.id
+
 }
 module "ACM"{
   source= "./modules/ACM"
