@@ -83,7 +83,3 @@ variable "cert" {
     type = string
   
 }
-variable "validation" {
-    type = string
-  
-}
