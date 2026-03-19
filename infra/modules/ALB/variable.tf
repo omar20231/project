@@ -41,6 +41,7 @@ locals {
     ]
 
   })
+  
 }
 
 
@@ -60,7 +61,7 @@ variable "route_type" {
 }
 
 
-variable "route-53" {
+variable "route_53" {
   type= string
 }
 
@@ -79,6 +80,10 @@ variable "subnet-2" {
   
 }
 variable "cert" {
+    type = string
+  
+}
+variable "validation" {
     type = string
   
 }
