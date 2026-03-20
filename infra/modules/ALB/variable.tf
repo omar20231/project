@@ -79,6 +79,14 @@ variable "subnet-2" {
   
 }
 variable "cert" {
-    type = string
+    type = object({
+      arn= string
+      domain_validation_options=list(object({
+         resource_record_name= string
+         resource_record_value= string
+         resource_record_type =string
+      }))
+
+    })
   
 }
