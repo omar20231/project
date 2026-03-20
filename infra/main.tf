@@ -201,7 +201,7 @@ module "ALB" {
   domain = var.domain
   cert =module.ACM.cert
   #cert = aws_acm_certificate.alm.arn
-  route-53 =data.aws_route53_zone.primary.zone_id
+  route_53 =data.aws_route53_zone.primary.zone_id
   security-group = aws_security_group.ALB-2.id
   subnet-1 = aws_subnet.public-1.id
   subnet-2 = aws_subnet.public-2.id
