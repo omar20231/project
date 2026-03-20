@@ -138,7 +138,7 @@ resource "aws_lb_listener" "front_end" {
   ]
 }*/
 resource "aws_route53_record" "www" {
-  zone_id = var.route-53
+  zone_id = var.route_53
   name    = var.domain
   type    = local.type
 
@@ -147,4 +147,25 @@ resource "aws_route53_record" "www" {
     zone_id                = aws_lb.ALB.zone_id
     evaluate_target_health = local.true
   }
+}
+resource "aws_route53_record" "cert" {
+    for_each = {
+    for dvo in var.cert.domain_validation_options : dvo.domain_name => {
+      name   = dvo.resource_record_name
+      record = dvo.resource_record_value
+      type   = dvo.resource_record_type
+    }
+  }
+  
+  allow_overwrite = true
+  name            = each.value.name
+  records         = [each.value.record]
+  ttl             = 60
+  type            = each.value.type
+  zone_id         = data.aws_route53_zone.example.zone_id
+
+  }
+resource "aws_acm_certificate_validation" "value" {
+  certificate_arn         = var.cert
+  validation_record_fqdns = [for record in aws_route53_record.cert : record.fqdn]
 }
