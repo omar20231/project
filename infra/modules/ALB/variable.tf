@@ -90,3 +90,7 @@ variable "cert" {
     })
   
 }
+variable "name" {
+    type = string
+  
+}

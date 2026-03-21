@@ -150,7 +150,7 @@ resource "aws_route53_record" "www" {
 }
 resource "aws_route53_record" "cert" {
     for_each = {
-    for dvo in var.cert.domain_validation_options : dvo.domain_name => {
+    for dvo in var.cert.domain_validation_options : var.name => {
       name   = dvo.resource_record_name
       record = dvo.resource_record_value
       type   = dvo.resource_record_type
