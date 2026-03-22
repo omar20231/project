@@ -30,15 +30,32 @@ jobs:
         with:
          terraform_version: "1.14.6"
          terraform_wrapper: false
+     - name: download artifact 
+       id: download-artifact
+       uses: dawidd6/action-download-artifact@v6
+       with:
+        name: terraform-plan
+        path: infra/tfplan
+        github_token: ${{github.token}}
+        repo: ${{github.repository}} 
+        workflow: reuse.yml
+        run_number: 22
 
-     - name: terraform-init  
-       run: |
-          cd infra
-          terraform init
+    
+     -  name: display artifact
+        run: ls -R artifact
 
-     - name: terraform apply 
-       run : |
-          cd infra
-          terraform apply -no-color-auto-approve
+       
+
+
+     # - name: terraform-init  
+     #  run: |
+      #    cd infra
+       #   terraform init
+
+     #- name: terraform apply 
+      # run : |
+       #   cd infra
+        #  terraform apply -no-color-auto-approve
 
   #how to execute tf plan from past, you in dev by the way
