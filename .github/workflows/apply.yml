@@ -46,16 +46,17 @@ jobs:
         run: ls -R infra/tfplan
 
        
+     - name: checking 
+       run: ls -l infra 
 
-
-     # - name: terraform-init  
-     #  run: |
-      #    cd infra
-       #   terraform init
+     #- name: terraform-init  
+      # run: |
+       #  cd infra
+        #  terraform init
 
      #- name: terraform apply 
       # run : |
        #   cd infra
-        #  terraform apply -no-color-auto-approve
+        #  terraform apply tfplan-no-color-auto-approve
 
   #how to execute tf plan from past, you in dev by the way
