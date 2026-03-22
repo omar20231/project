@@ -43,7 +43,7 @@ jobs:
 
     
      -  name: display artifact
-        run: ls -R artifact
+        run: ls -R terraform-plan
 
        
 
