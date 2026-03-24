@@ -98,7 +98,7 @@ resource "aws_lb_listener" "front_end" {
   load_balancer_arn = aws_lb.ALB.arn
   port              = local.port-2
   protocol          = local.protocol_2
-  certificate_arn   = var.cert
+  certificate_arn   = var.cert.arn
 
   default_action {
     type = local.default_action
@@ -150,7 +150,7 @@ resource "aws_route53_record" "www" {
 }
 resource "aws_route53_record" "cert" {
     for_each = {
-    for dvo in var.cert.domain_validation_options : dvo.domain_name => {
+    for dvo in var.cert.domain_validation_options : var.name => {
       name   = dvo.resource_record_name
       record = dvo.resource_record_value
       type   = dvo.resource_record_type
@@ -162,10 +162,10 @@ resource "aws_route53_record" "cert" {
   records         = [each.value.record]
   ttl             = 60
   type            = each.value.type
-  zone_id         = data.aws_route53_zone.example.zone_id
+  zone_id         = var.route_53
 
   }
 resource "aws_acm_certificate_validation" "value" {
-  certificate_arn         = var.cert
+  certificate_arn         = var.cert.arn
   validation_record_fqdns = [for record in aws_route53_record.cert : record.fqdn]
 }

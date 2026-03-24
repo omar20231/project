@@ -1,6 +1,10 @@
 name: terraform apply and checks 
 
 on: 
+    push:
+     branches: [ main ]
+     paths:
+      -"infra/**"
     workflow_dispatch:
 
 permissions:
@@ -12,27 +16,41 @@ jobs:
 
      steps:
      - name: checkout code 
-       uses: actions/checkout@v2
+       uses: actions/checkout@v4
 
 
      - name: Aws credentials
-       uses: aws-actions/configure-aws-credentials@v6
+       uses: aws-actions/configure-aws-credentials@v6.0.0
        with:
          role-to-assume: ${{ secrets.TERRAFORM }}
          aws-region: "eu-west-2"
       
      -  name: terraform 
-        uses: hashicorp/setup-terraform@v3
+        uses: hashicorp/setup-terraform@v4
         with:
          terraform_version: "1.14.6"
          terraform_wrapper: false
+     - name: download artifact 
+       id: download-artifact
+       uses: dawidd6/action-download-artifact@v6
+       with:
+        name: terraform-plan
+        path: infra/tfplan
+        github_token: ${{github.token}}
+        repo: ${{github.repository}} 
+        workflow: reuse.yml
+        run_number: 23
 
-     - name: terraform init  
+    
+  
+     - name: terraform-init  
        run: |
-          cd infra
+         cd infra
           terraform init
 
      - name: terraform apply 
        run : |
           cd infra
-          terraform apply -no-color -auto-approve
+          terraform apply tfplan-no-color-auto-approve
+
+  
