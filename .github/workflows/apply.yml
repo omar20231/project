@@ -51,6 +51,6 @@ jobs:
      - name: terraform apply 
        run : |
           cd infra
-          terraform apply tfplan -no-color-auto-approve
+          terraform apply tfplan -input=false -auto-approve
 
   
