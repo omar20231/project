@@ -7,7 +7,7 @@ variable "vpc_cidr" {
   
 }
 locals {
-  name = "thread"
+  name = "thread-2"
   load_balancer_type ="application"
   prefix = "test-lb"
   tags = "production"
@@ -41,6 +41,7 @@ locals {
     ]
 
   })
+  
 }
 
 
