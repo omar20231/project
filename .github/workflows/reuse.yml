@@ -58,7 +58,5 @@ jobs:
          path: infra/tfplan
          retention-days: 5
 
-     - name: display artifact
-       run: ls -R infra
-
+     
            
