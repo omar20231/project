@@ -32,7 +32,7 @@ jobs:
          terraform_version: "1.14.6"
          terraform_wrapper: false
 
-     - name: terraform init  
+     - name: terraform-init  
        run: |
           cd infra
           terraform init
@@ -46,14 +46,7 @@ jobs:
        id: plan
        run: | 
           cd infra
-          terraform plan -no-color -out=tfplan
+          terraform plan 
 
      
-     - name: upload plan artifect
-       uses: actions/upload-artifact@v4
-       with:
-         name: terraform-plan 
-         path: infra/tfplan
-         retention-days: 5
-
-     
+    
