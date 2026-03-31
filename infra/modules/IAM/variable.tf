@@ -1,4 +1,4 @@
 variable "name" {
     type = string
-    default= "ci-cd-2"
+    default= "ci"
 }
