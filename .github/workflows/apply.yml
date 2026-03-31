@@ -11,45 +11,36 @@ permissions:
   id-token: write   
   contents: read 
 jobs:
-    build:
-     runs-on: ubuntu-24.04
-
-     steps:
-     - name: checkout code 
-       uses: actions/checkout@v4
+    apply:
+      name: Terraform apply
+      runs-on: ubuntu-24.04
 
 
-     - name: Aws credentials
-       uses: aws-actions/configure-aws-credentials@v6.0.0
-       with:
+      steps:
+      - name: checkout code 
+        uses: actions/checkout@v4
+
+
+      - name: Aws credentials
+        uses: aws-actions/configure-aws-credentials@v6.0.0
+        with:
          role-to-assume: ${{ secrets.TERRAFORM }}
          aws-region: "eu-west-2"
       
-     -  name: terraform 
-        uses: hashicorp/setup-terraform@v4
-        with:
-         terraform_version: "1.14.6"
-         terraform_wrapper: false
-     - name: download artifact 
-       id: download-artifact
-       uses: dawidd6/action-download-artifact@v6
-       with:
-        name: terraform-plan
-        github_token: ${{github.token}}
-        repo: ${{github.repository}} 
-        workflow: reuse.yml
-        run_number: 25
-
-    
+      -  name: terraform 
+         uses: hashicorp/setup-terraform@v4 
+         with:
+          terraform_version: "1.14.6"
+          terraform_wrapper: false
   
-     - name: terraform-init  
-       run: |
-         cd infra
-          terraform init
-
-     - name: terraform apply 
-       run : |
+      - name: terraform-init  
+        run: |
           cd infra
-          terraform apply -auto-approve -input=false tfplan
+           terraform init
+
+      - name: terraform apply 
+        run : |
+          cd infra
+          terraform apply -auto-approve
 
   
