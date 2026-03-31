@@ -56,9 +56,4 @@ jobs:
          path: infra/tfplan
          retention-days: 5
 
-     - name: checking where tf plan is
-       run: ls -R  
-
-
      
-           
