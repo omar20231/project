@@ -1,0 +1,30 @@
+name: post-deploy checks
+on : 
+  workflow_dispatch:
+
+
+jobs:
+    build:
+     runs-on: ubuntu-latest
+
+     steps:
+     - name: checkout code 
+       uses: actions/checkout@v4
+
+
+     - name: Aws credentials
+       uses: aws-actions/configure-aws-credentials@v6.0.0
+       with:
+         role-to-assume: ${{ secrets.TERRAFORM }}
+         aws-region: "eu-west-2"
+    
+     - name: checking
+       run: | 
+        check=$(curl -s -o response.txt -w "%{response_code}" https://tm-thread.com)
+        if [ "${check}" != 200 ]; then 
+           echo "health check failed"
+           exit 1
+        else
+           echo "health check passed"
+        fi
+        echo "health check passed"
