@@ -1,5 +1,52 @@
 <img width="500" height="400" alt="Image" src="https://github.com/user-attachments/assets/b4e2f946-f0bf-4a84-8187-162ee0d6b3ea" />
 <h1>Architecture</h1>
+<p>File structure</p>
+
+```text
+ecs/
+├── .github/workflows
+│ ├── apply.yml
+│ ├── check.yml
+│ ├── push.yml
+│ └── reuse.yml
+│
+│
+├── ecs-assignment/
+│ ├──Dockerfile
+│ ├──.dockerignore
+│ ├──yarn.lock
+│
+│
+├── infra/
+│ ├── modules/
+│ │ ├── ACM/
+│ │ │ ├── ACM.tf
+│ │ │ ├── outputs.tf
+│ │ │ └── variables.tf
+│ │ ├── ALB/
+│ │ │ ├── ALB.tf
+│ │ │ ├──outputs.tf
+│ │ │ ├── terraform.tfvars
+│ │ │ └── variable.tf
+│ │ ├── ecs/
+│ │ │ ├── ecs.tf
+│ │ │ ├── terraform.tfvars
+│ │ │ ├── variables.tf
+│ │ ├── IAM/
+│ │ │ ├── IAM.tf
+│ │ │ └── variables.tf
+│ │
+│ ├── main.tf
+│ ├── outputs.tf
+│ ├── prov.tf
+│ ├── terraform.tfvars
+│ └── variables.tf
+│
+├── .gitignore
+└── README.md
+```
+
+|
 
 <p>In this project I’ve built and deployed an end-to-end containerised application on AWS with CI/CD automation.
 
