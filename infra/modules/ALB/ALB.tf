@@ -6,7 +6,7 @@ resource "aws_lb" "ALB" {
   subnets            = [var.subnet-1 , var.subnet-2] 
   
 
-  enable_deletion_protection = true
+  enable_deletion_protection = false
   
 
  
