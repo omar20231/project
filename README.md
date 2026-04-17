@@ -46,7 +46,7 @@ ecs/
 └── README.md
 ```
 
-|
+
 
 <p>In this project I’ve built and deployed an end-to-end containerised application on AWS with CI/CD automation.
 
