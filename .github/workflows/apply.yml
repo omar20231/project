@@ -38,7 +38,7 @@ jobs:
           cd infra
            terraform init
 
-      - name: terraform apply 
+      - name: terraform-apply
         run : |
           cd infra
           terraform apply -auto-approve

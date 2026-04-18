@@ -1,4 +1,4 @@
 variable "name" {
     type = string
-    default= "terra-10"
+    default= "terra-12"
 }
